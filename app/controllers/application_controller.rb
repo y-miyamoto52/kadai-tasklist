@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
   
-  def index
-    @tasks = Task.all
-  end
-#taskモデルの一覧を取得
+  
   def show
     @task = Task.find(params[:id])
   end
