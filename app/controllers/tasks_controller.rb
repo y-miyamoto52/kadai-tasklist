@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.page(params[:page])
   end
 
   def show
-    @task = Task.find(params[:id])
+    set_tsk
   end
 
   def new
@@ -24,11 +24,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-     @task = Task.find(params[:id])
+     set_tsk
   end
 
   def update
-    @task = Task.find(params[:id])
+    set_tsk
 
       if @task.update(task_params)
         flash[:success] = 'Task は正常に更新されました'
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    set_tsk
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
@@ -49,9 +49,12 @@ class TasksController < ApplicationController
   
   
 private
-
+  def set_tsk
+    @task = Task.find(params[:id])
+  end
+  
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :status)
   end
 
 end
