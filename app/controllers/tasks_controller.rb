@@ -10,11 +10,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    if logged_in?
       @task = current_user.tasks.build 
-    else
-      
-    end
   end
 
   def create
