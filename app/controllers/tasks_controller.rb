@@ -47,7 +47,7 @@ class TasksController < ApplicationController
   end
   
   
-private
+  private
   # def set_tsk
   #   @task = current_user.tasks.find(params[:id])
   # end
